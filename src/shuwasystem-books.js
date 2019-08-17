@@ -20,11 +20,11 @@ const fs = require('fs');
         price: item.querySelector('.price').innerText
       }
     })
-  }, '#main_column > .listType1 > ul > li')
+  }, '#main_column > .listType1 > ul > li');
   fs.writeFile('output/shuwasystem-books.json', JSON.stringify(newBooks), err => {
     if (err) {
       throw err
     }
-  })
+  });
   await browser.close();
 })();
