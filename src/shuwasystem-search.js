@@ -18,13 +18,11 @@ const searchWord = process.argv[2] || 'puppeteer';
 
   const inputArea = '#hnaviSearchWord'
   const submitButton = '#hnaviSearchSubmit'
-
   await page.type(inputArea, searchWord);
-  page.click(submitButton);
-
-  await page.waitForNavigation({
-    waitUntil: "networkidle0"
-  });
+  await Promise.all([
+    page.waitForNavigation({ waitUntil: "load" }), // ページ遷移を待つ
+    page.click(submitButton) // 検索
+  ]);
 
   const books = await page.evaluate(selector => {
     return Array.from(document.querySelectorAll(selector), item => {
@@ -40,6 +38,6 @@ const searchWord = process.argv[2] || 'puppeteer';
     if (err) {
       throw err
     }
-  })
+  });
   await browser.close();
 })();
