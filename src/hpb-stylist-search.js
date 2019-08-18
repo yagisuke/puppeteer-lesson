@@ -62,7 +62,7 @@ const fs = require('fs');
     ]);
   }
 
-  const path = 'output/hpb-stylist.json';
+  const path = 'output/hpb-stylist-search.json';
   console.log(`合計${result.length}人のスタイリスト情報を取得しました------------------------------`);
   fs.writeFile(path, JSON.stringify(result), err => {
     if (err) {

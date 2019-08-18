@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
   await page.setViewport({ width: 1200, height: 800 });
   await page.goto('https://www.google.com/');
   await page.screenshot({
-    path: 'output/google.png'
+    path: 'output/google-screenshot.png'
   });
   await browser.close();
 })();

@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
   await page.setViewport({ width: 1200, height: 800 });
   await page.goto('https://yahoo.co.jp');
   await page.screenshot({
-    path: 'output/yahoo.png'
+    path: 'output/yahoo-screenshot.png'
   });
   await browser.close();
 })();
