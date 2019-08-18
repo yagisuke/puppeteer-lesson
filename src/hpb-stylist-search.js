@@ -20,8 +20,8 @@ const fs = require('fs');
 
   await Promise.all([
     page.click('#netReserse2'), // 指名OK
-    page.click('#imageIC19'), // 女性
-    page.click('#sex1') // メンズカット
+    page.click('#imageIC19'), // メンズカット
+    page.click('#sex1') // 女性
   ]);
   await Promise.all([
     page.waitForNavigation({
