@@ -21,7 +21,7 @@ const fs = require('fs');
       }
     })
   }, '#main_column > .listType1 > ul > li');
-  fs.writeFile('output/shuwasystem-books.json', JSON.stringify(newBooks), err => {
+  fs.writeFile('output/shuwasystem-new-books.json', JSON.stringify(newBooks), err => {
     if (err) {
       throw err
     }

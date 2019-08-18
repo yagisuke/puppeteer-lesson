@@ -34,7 +34,7 @@ const searchWord = process.argv[2] || 'puppeteer';
       }
     })
   }, '#main .resultWrap > .bookWrap .ro > li');
-  fs.writeFile('output/shuwasystem-search-result.json', JSON.stringify(books), err => {
+  fs.writeFile('output/shuwasystem-search-books.json', JSON.stringify(books), err => {
     if (err) {
       throw err
     }
