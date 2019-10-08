@@ -1,28 +1,28 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
-const searchWord = process.argv[2] || 'puppeteer';
+const puppeteer = require('puppeteer')
+const fs = require('fs')
+const searchWord = process.argv[2] || 'puppeteer'
 
-(async () => {
+;(async () => {
   const browser = await puppeteer.launch({
     headless: false,
     slowMo: 100
-  });
-  const page = await browser.newPage();
+  })
+  const page = await browser.newPage()
   await page.setViewport({
     width: 1200,
     height: 800
-  });
+  })
   await page.goto('https://www.shuwasystem.co.jp/', {
     waitUntil: 'networkidle0'
-  });
+  })
 
   const inputArea = '#hnaviSearchWord'
   const submitButton = '#hnaviSearchSubmit'
-  await page.type(inputArea, searchWord);
+  await page.type(inputArea, searchWord)
   await Promise.all([
-    page.waitForNavigation({ waitUntil: "load" }), // ページ遷移を待つ
+    page.waitForNavigation({ waitUntil: 'load' }), // ページ遷移を待つ
     page.click(submitButton) // 検索
-  ]);
+  ])
 
   const books = await page.evaluate(selector => {
     return Array.from(document.querySelectorAll(selector), item => {
@@ -33,11 +33,11 @@ const searchWord = process.argv[2] || 'puppeteer';
         price: item.querySelector('.price').innerText
       }
     })
-  }, '#main .resultWrap > .bookWrap .ro > li');
+  }, '#main .resultWrap > .bookWrap .ro > li')
   fs.writeFile('output/shuwasystem-books.json', JSON.stringify(books), err => {
     if (err) {
       throw err
     }
-  });
-  await browser.close();
-})();
+  })
+  await browser.close()
+})()
