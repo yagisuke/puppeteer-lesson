@@ -57,13 +57,12 @@ const pdfStyle = `
   })
 
   for (let i = 0; i < articles.length; i++) {
+    await page.waitFor(1000)
+
     const { title, updatedAt, url } = articles[i]
     const prefix = converter.convert(`${updatedAt}-${title}`)
 
     console.log(`start: ${prefix}`)
-
-    await page.waitFor(1000)
-
     await page.goto(url, {
       waitUntil: 'networkidle0'
     })
@@ -71,7 +70,6 @@ const pdfStyle = `
     await page.addStyleTag({
       content: pdfStyle
     })
-
     await page.pdf({
       path: path.join('output/DeNA_DESIGN_BLOG/pdf', `${prefix}.pdf`),
       format: 'A4',
